@@ -56,6 +56,7 @@ function Auction() {
         <div>
             <h2>{auction.itemName}</h2>
             <p>{auction.description}</p>
+            <p>Ends at: {auction.endDateTime}</p>
             <h3>Bids</h3>
             {bids.map((bid, index) => (
                 <p key={index}>${bid.bidAmount} - {new Date(bid.timestamp).toLocaleString()}</p>

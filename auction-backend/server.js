@@ -74,9 +74,9 @@ MongoClient.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true 
 
     // Create a new auction
     app.post('/auctions', async (req, res) => {
-      const { itemName, description } = req.body;
+      const { itemName, description, endDateTime } = req.body;
       try {
-        const result = await auctionsCollection.insertOne({ itemName, description });
+        const result = await auctionsCollection.insertOne({ itemName, description, endDateTime });
         res.json({ success: true, auctionId: result.insertedId });
       } catch (error) {
         res.json({ success: false, message: error.message });
