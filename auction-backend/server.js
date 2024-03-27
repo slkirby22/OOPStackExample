@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const { MongoClient, ObjectId } = require('mongodb');
@@ -7,8 +8,18 @@ const { MongoClient, ObjectId } = require('mongodb');
 const app = express();
 const port = process.env.PORT || 3000;
 const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/auctionApp';
-
+app.use(cors());
 app.use(bodyParser.json());
+
+// CORS options
+const corsOptions = {
+  origin: 'http://example.com', //restrict calls to this origin
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+// app.use(cors(corsOptions));
+app.use(cors());
+app.use(bodyParser.json());
+
 
 class Stack {
   constructor() {
